@@ -173,9 +173,15 @@
 
 .hero-banner{
   border-radius: var(--radius);
-  border: 2px dashed rgba(22,59,105,.25);
-  background: rgba(22,59,105,.05);
+  border: none;                /* REMOVE dotted lines */
+  background: transparent;     /* REMOVE placeholder background */
   overflow: hidden;
+
+  aspect-ratio: 2 / 1;
+  width: 100%;
+  min-height: 220px;
+}
+
 
   /* KEY FIXES */
   aspect-ratio: 2 / 1;     /* keeps your 1200x600 perfect */
@@ -919,5 +925,6 @@
 
 </body>
 </html>
+
 
 
