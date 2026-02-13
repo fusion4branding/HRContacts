@@ -174,21 +174,18 @@
 .hero-banner{
   border-radius: var(--radius);
   overflow: hidden;
-  background: #fff;              /* gives a clean backdrop */
-  aspect-ratio: 2 / 1;           /* keep your layout shape */
+  background: #fff;
+  aspect-ratio: 2 / 1;      /* matches 1200x600 */
   width: 100%;
   min-height: 220px;
-  display:flex;                  /* centers the image */
-  align-items:center;
-  justify-content:center;
 }
 
 .hero-banner img{
   width: 100%;
   height: 100%;
-  object-fit: contain;           /* ✅ shows full image */
-  object-position: center;
   display: block;
+  object-fit: contain;      /* show full banner image */
+  object-position: center;
 }
 
 
@@ -198,14 +195,6 @@
   min-height: 220px;       /* fallback for older browsers */
   padding: 0;              /* remove extra padding */
   display: block;          /* remove grid centering */
-}
-
-.hero-banner img{
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center top;/* fills the area nicely */
-  display: block;
 }
 
 
@@ -594,6 +583,50 @@
   line-height: 1.45;
 }
 
+.product-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:16px;
+}
+
+.product-card{
+  border:1px solid var(--line);
+  border-radius:var(--radius-sm);
+  padding:14px;
+  background:#fff;
+  box-shadow: var(--shadow-soft);
+}
+
+.product-card h4{
+  margin:10px 0 6px;
+  font-size:15px;
+  color:var(--navy-2);
+}
+
+.product-card p{
+  margin:4px 0;
+  font-size:13.5px;
+  color:var(--muted);
+}
+
+.product-image{
+  height:140px;
+  border-radius:14px;
+  border:1px dashed rgba(22,59,105,.25);
+  background: rgba(22,59,105,.04);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:800;
+  color:rgba(15,46,85,.55);
+}
+
+.price{
+  margin-top:8px !important;
+  font-weight:900;
+  color:var(--navy-2) !important;
+}
+
 /* When unlocked, hide overlay */
 .teaser:not(.is-locked) .overlay{
   display: none;
@@ -678,13 +711,10 @@
             </div>
           </div>
 
-          <div class="hero-banner" aria-label="Hero banner placeholder">
 <div class="hero-banner" aria-label="Hero banner">
   <img src="images/hero-banner.png" alt="Hero banner">
 </div>
 
-
-          </div>
         </div>
       </section>
 
@@ -765,25 +795,165 @@
 
 <script>
   // -------------------------
-  // CONFIG (Placeholders)
+  // CONFIG (Products live inside Categories)
   // -------------------------
   const CATEGORIES = [
-    { title: "Category 1 (Placeholder)" },
-    { title: "Category 2 (Placeholder)" },
-    { title: "Category 3 (Placeholder)" },
-    { title: "Category 4 (Placeholder)" },
-    { title: "Category 5 (Placeholder)" },
-    { title: "Category 6 (Placeholder)" },
-    { title: "Category 7 (Placeholder)" },
-    { title: "Category 8 (Placeholder)" },
-    { title: "Category 9 (Placeholder)" },
-    { title: "Category 10 (Placeholder)" }
-  ];
+    {
+      title: "Polos",
+      options: [
+        {
+          tier: "Good",
+          desc: "Reliable performance polo option.",
+          name: "Port Authority® Silk Touch™ Performance Polo",
+          sku: "K540",
+          color: "Navy",
+          logo: "White (Left Chest)",
+          moq: 12,
+          price: 21.50,
+          imageText: "Mockup Coming Soon",
+          // imageSrc: "images/polos/k540.png" // optional later
+        },
+        {
+          tier: "Better",
+          desc: "Premium brand option with Dri-FIT feel.",
+          name: "Nike Dri-FIT Micro Pique 2.0 Polo",
+          sku: "NKDC1963",
+          color: "Navy",
+          logo: "White (Left Chest)",
+          moq: 12,
+          price: 45.00,
+          imageText: "Mockup Coming Soon",
+        },
+        {
+          tier: "Best",
+          desc: "Top-tier performance + style.",
+          name: "OGIO® Caliber2.0 Polo",
+          sku: "OG101",
+          color: "Navy",
+          logo: "White (Left Chest)",
+          moq: 12,
+          price: 36.50,
+          imageText: "Mockup Coming Soon",
+        },
+      ],
+    },
 
-  const TIERS = [
-    { key: "Good",   desc: "Short description placeholder (Good)." },
-    { key: "Better", desc: "Short description placeholder (Better)." },
-    { key: "Best",   desc: "Short description placeholder (Best)." }
+    {
+      title: "Backpacks",
+      options: [
+        {
+          tier: "Good",
+          desc: "Daily-use commuter backpack.",
+          name: "Port Authority® Daily Commute Backpack",
+          sku: "BG226",
+          color: "Black",
+          logo: "White (Center of Bag)",
+          moq: 12,
+          price: 32.00,
+          imageText: "Mockup Coming Soon",
+        },
+        {
+          tier: "Better",
+          desc: "Rugged canvas construction.",
+          name: "Carhartt® Canvas Backpack",
+          sku: "CT89241804",
+          color: "Navy",
+          logo: "White (Center of Bag)",
+          moq: 12,
+          price: 55.75,
+          imageText: "Mockup Coming Soon",
+        },
+        {
+          tier: "Best",
+          desc: "Premium outdoor brand option.",
+          name: "The North Face® Stalwart Backpack",
+          sku: "NF0A52S6",
+          color: "Black",
+          logo: "White (Center of Bag)",
+          moq: 12,
+          price: 75.95,
+          imageText: "Mockup Coming Soon",
+        },
+      ],
+    },
+
+    {
+      title: "Jackets",
+      options: [
+        {
+          tier: "Good",
+          desc: "Classic soft shell at a solid value.",
+          name: "Port Authority® Textured Soft Shell Jacket",
+          sku: "J705",
+          color: "Black",
+          logo: "White (Left Chest)",
+          moq: 12,
+          price: 60.00,
+          imageText: "Mockup Coming Soon",
+        },
+        {
+          tier: "Better",
+          desc: "Comfort stretch + trusted brand.",
+          name: "Eddie Bauer® Stretch Soft Shell Jacket",
+          sku: "EB544",
+          color: "River Blue Navy",
+          logo: "White (Left Chest)",
+          moq: 12,
+          price: 76.50,
+          imageText: "Mockup Coming Soon",
+        },
+        {
+          tier: "Best",
+          desc: "Premium outerwear option.",
+          name: "The North Face® Apex Barrier Soft Shell Jacket",
+          sku: "NF0A3LGT",
+          color: "Black",
+          logo: "White (Left Chest)",
+          moq: 12,
+          price: 179.00,
+          imageText: "Mockup Coming Soon",
+        },
+      ],
+    },
+
+    {
+      title: "Hats",
+      options: [
+        {
+          tier: "Good",
+          desc: "Classic best-seller style.",
+          name: "Richardson 112 Hat",
+          sku: "112",
+          color: "Navy / White",
+          logo: "White (Center of Hat)",
+          moq: 12,
+          price: 17.50,
+          imageText: "Mockup Coming Soon",
+        },
+        {
+          tier: "Better",
+          desc: "Performance cap option.",
+          name: "Nike Dri-FIT Perforated Performance Cap",
+          sku: "NKFB6445",
+          color: "Navy / White",
+          logo: "White (Center of Hat)",
+          moq: 12,
+          price: 33.50,
+          imageText: "Mockup Coming Soon",
+        },
+        {
+          tier: "Best",
+          desc: "Durable canvas cap.",
+          name: "Carhartt® Cotton Canvas Cap",
+          sku: "CT103938",
+          color: "Navy / White",
+          logo: "White (Center of Hat)",
+          moq: 12,
+          price: 27.50,
+          imageText: "Mockup Coming Soon",
+        },
+      ],
+    },
   ];
 
   // -------------------------
@@ -802,11 +972,9 @@
     return name.length > 0 && isValidEmail(email) && loc.length > 0;
   }
 
-  // ✅ SINGLE correct lock/unlock controller
   function setLockedUI(locked){
     const teaser = $("mainTeaser");
     const categoriesWrap = $("categoriesWrap");
-
     if(!teaser || !categoriesWrap) return;
 
     if(locked){
@@ -824,7 +992,7 @@
 
     container.innerHTML = "";
 
-    CATEGORIES.forEach((cat, idx) => {
+    CATEGORIES.forEach((cat) => {
       const catEl = document.createElement("div");
       catEl.className = "category";
 
@@ -836,22 +1004,30 @@
       const cards = document.createElement("div");
       cards.className = "cards";
 
-      TIERS.forEach((tier) => {
+      (cat.options || []).forEach((opt) => {
         const card = document.createElement("div");
         card.className = "card";
-        card.setAttribute("data-category", String(idx + 1));
-        card.setAttribute("data-tier", tier.key);
 
         const left = document.createElement("div");
 
         const img = document.createElement("div");
         img.className = "img-slot";
-        img.innerHTML = `Product Image<br/><span style="font-weight:800; opacity:.85; font-size:12px;">(placeholder)</span>`;
+
+        // If you later add real images:
+        // if (opt.imageSrc) {
+        //   img.style.padding = "0";
+        //   img.style.overflow = "hidden";
+        //   img.innerHTML = `<img src="${opt.imageSrc}" alt="${opt.name}" style="width:100%;height:100%;object-fit:contain;display:block;">`;
+        // } else {
+        //   img.textContent = opt.imageText || "Mockup Coming Soon";
+        // }
+
+        img.textContent = opt.imageText || "Mockup Coming Soon";
         left.appendChild(img);
 
         const pname = document.createElement("div");
         pname.className = "product-name";
-        pname.textContent = "Product Name (Placeholder)";
+        pname.textContent = opt.name;
         left.appendChild(pname);
 
         const right = document.createElement("div");
@@ -859,13 +1035,26 @@
 
         const tierRow = document.createElement("div");
         tierRow.className = "tier";
-        tierRow.innerHTML = `<span>${tier.key}</span><span style="opacity:.85;">Option</span>`;
+        tierRow.innerHTML = `<span>${opt.tier}</span><span style="opacity:.85;">Option</span>`;
         right.appendChild(tierRow);
 
         const desc = document.createElement("p");
         desc.className = "desc";
-        desc.textContent = tier.desc;
+        desc.textContent = opt.desc || "";
         right.appendChild(desc);
+
+        const meta = document.createElement("p");
+        meta.className = "desc";
+        meta.style.opacity = ".95";
+        meta.style.marginTop = "-4px";
+        meta.textContent = `Product #: ${opt.sku} • Color: ${opt.color} • Logo: ${opt.logo}`;
+        right.appendChild(meta);
+
+        const price = document.createElement("p");
+        price.className = "desc";
+        price.style.fontWeight = "900";
+        price.textContent = `MOQ: ${opt.moq} • $${Number(opt.price).toFixed(2)} at MOQ`;
+        right.appendChild(price);
 
         const qtyRow = document.createElement("div");
         qtyRow.className = "qty-row";
@@ -885,14 +1074,22 @@
         btn.type = "button";
         btn.textContent = "Select";
         btn.addEventListener("click", () => {
-          alert(`Selected (placeholder): ${cat.title} → ${tier.key}`);
+          const q = qtyInput.value || "0";
+          alert(`Selected (placeholder): ${cat.title} → ${opt.tier}\n${opt.name}\nQty: ${q}`);
         });
 
         const link = document.createElement("span");
         link.className = "link";
         link.textContent = "View Details";
         link.addEventListener("click", () => {
-          alert(`View Details (placeholder): ${cat.title} → ${tier.key}`);
+          alert(
+            `${opt.name}\n` +
+            `Product #: ${opt.sku}\n` +
+            `Color: ${opt.color}\n` +
+            `Logo: ${opt.logo}\n` +
+            `MOQ: ${opt.moq}\n` +
+            `Price: $${Number(opt.price).toFixed(2)} at MOQ`
+          );
         });
 
         actions.appendChild(btn);
@@ -921,8 +1118,6 @@
     if(yearEl) yearEl.textContent = new Date().getFullYear();
 
     renderCategories();
-
-    // ✅ Run once on load so filled fields unlock immediately
     onFormChange();
 
     ["name","email","location"].forEach(id => {
@@ -933,9 +1128,9 @@
   });
 </script>
 
+
 </body>
 </html>
-
 
 
 
